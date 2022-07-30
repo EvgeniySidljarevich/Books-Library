@@ -4,6 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
+public
+package-lock.json
+tsconfig.json
+.idea
 
 # testing
 /coverage
