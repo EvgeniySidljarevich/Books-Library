@@ -1,13 +1,15 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { StartPage } from "./pages/startPage/startPage";
 
 function App() {
-  return (
-    <div className="App">
-    </div>
-  );
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<StartPage />} />
+            </Routes>
+        </Router>
+    );
 }
-
-
 
 export default App;
