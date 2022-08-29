@@ -1,15 +1,18 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
   /* Box sizing rules */
   * {
     box-sizing: border-box;
   }
-  
+
   /* Remove default margin and padding */
   body {
     font-family: 'Open Sans', sans-serif;
-  },
+    margin: 0;
+    padding: 0;
+  }
+
   h1,
   h2,
   h3,
@@ -88,6 +91,7 @@ export const GlobalStyles = createGlobalStyle`
     html:focus-within {
       scroll-behavior: auto;
     }
+
     *,
     *::before,
     *::after {
@@ -100,4 +104,4 @@ export const GlobalStyles = createGlobalStyle`
 
   button, a {
     cursor: pointer;
-  }`
+  }`;

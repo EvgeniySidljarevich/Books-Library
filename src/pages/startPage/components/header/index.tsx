@@ -5,8 +5,10 @@ import {
     fontSize,
     color,
     borderRadius,
+    fontWeight,
 } from "../../../../styles/variables";
 import { config } from "../../../../locales/en";
+import { container } from "../../../../styles/styleComponents";
 
 const {
     signatures: { startPage },
@@ -14,13 +16,25 @@ const {
         startPage: { header },
     },
 } = config;
-const logo: string = require("./assets/icons/logo.svg").default;
-const searchIcon: string = require("./assets/icons/searchIcon.svg").default;
-const cancelIcon: string = require("./assets/icons/cancel.svg").default;
+const logo: string = require("../../../../assets/icons/logo.svg").default;
+const searchIcon: string =
+    require("../../../../assets/icons/searchIcon.svg").default;
+const cancelIcon: string =
+    require("../../../../assets/icons/redCancelIcon.svg").default;
 
-export const Header = () => {
-    const handleClick = (event: MouseEvent<HTMLElement>) => {
+type Props = {
+    regClick: () => void;
+    authClick: () => void;
+};
+
+export const Header = ({ authClick, regClick }: Props) => {
+    const handleClickReg = (event: MouseEvent<HTMLElement>) => {
         event.preventDefault();
+        regClick();
+    };
+    const handleClickAuth = (event: MouseEvent<HTMLElement>) => {
+        event.preventDefault();
+        authClick();
     };
 
     return (
@@ -34,13 +48,14 @@ export const Header = () => {
                 <input
                     type="search"
                     placeholder={startPage.header.inputPlaceholder}
+                    disabled
                 />
             </FormContainer>
             <AuthBlock>
-                <a href="/" onClick={handleClick}>
+                <a href="/" onClick={handleClickReg}>
                     {header.logIn}
                 </a>
-                <a href="/" onClick={handleClick}>
+                <a href="/" onClick={handleClickAuth}>
                     {header.signUp}
                 </a>
             </AuthBlock>
@@ -49,6 +64,7 @@ export const Header = () => {
 };
 
 const HeaderContainer = styled.header`
+    ${container};
     display: flex;
     align-items: center;
     min-height: 108px;
@@ -94,7 +110,7 @@ const FormContainer = styled.div`
         max-width: 500px;
         min-width: 300px;
         height: 48px;
-        font-weight: 400;
+        font-weight: ${fontWeight.regular};
         font-size: ${fontSize.sm};
         line-height: 137.5%;
         outline-color: #e80000;
@@ -127,7 +143,7 @@ const AuthBlock = styled.div`
 
     a {
         position: relative;
-        font-weight: 700;
+        font-weight: ${fontWeight.bold};
         font-size: ${fontSize.lg};
         line-height: 135%;
         color: ${color.gray};
