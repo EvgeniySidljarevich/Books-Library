@@ -22,11 +22,13 @@ export const config = {
             listBooksSection: "List of your books",
         },
         bookPage: "About book",
+        settingPage: "Settings",
     },
     subtitles: {},
     text: {
         startPage: {
             main: "Over 400.000 books from fiction to the business literature",
+            warningPopUp: "You aren't logged in. Please register or log in.",
         },
         allBooksPage: {
             bookStatus: {
@@ -47,11 +49,16 @@ export const config = {
         allBooksPage: {
             order: "Order",
             showMore: "Show more",
+            logOut: "Log out",
         },
         orderPage: {
             check: "Check status",
             return: "Return",
         },
+        settingPage: {
+            save: "Save",
+            changePhoto: "Change photo",
+        }
     },
     links: {
         startPage: {
@@ -64,6 +71,8 @@ export const config = {
             header: {
                 allBooks: "All books",
                 yourOrder: "Your orders",
+                setting: "Settings",
+                myOrder: "My orders",
             },
             footer: {
                 about: ["About us","Privacy&Security","Contact us",],
@@ -83,6 +92,7 @@ export const config = {
                 birthdate: "Your birthdate",
                 email: "Email",
                 password: "Password",
+                newPassword: "New password",
             },
         },
         allBooksPage: {

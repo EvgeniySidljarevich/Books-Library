@@ -1,17 +1,16 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Header } from "./components/header";
 import { Main } from "./components/main";
-import { Modal } from "./components/popUp";
-import { useEffect, useState } from "react";
+import { Modal } from "./components/popUp/authForm";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { RegistrationForm } from "./components/registrationForm";
-import {AuthenticationForm} from "./components/authenticationForm";
+import { AuthenticationForm } from "./components/authenticationForm";
+import { useAuthButtons } from "../../hooks/useAuthButtons";
 
 export const StartPage = () => {
-    const [isOpenReg, setOpenReg] = useState(false);
-    const [isOpenAuth, setOpenAuth] = useState(false);
-    const handleClickReg = () => setOpenReg(!isOpenReg);
-    const handleClickAuth = () => setOpenAuth(!isOpenAuth);
+    const { isOpenAuth, isOpenReg, handleClickReg, handleClickAuth } =
+        useAuthButtons();
     const navigate = useNavigate();
 
     useEffect(() => {

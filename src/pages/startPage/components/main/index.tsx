@@ -7,29 +7,25 @@ import {
     fontWeight,
 } from "../../../../styles/variables";
 import { config } from "../../../../locales/en";
-import { container } from "../../../../styles/styleComponents";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { container, RedButton } from "../../../../styles/styleComponents";
+import {WarningPopUp} from "../popUp/warningPopUp";
+import {useStartButton} from "../../../../hooks/useStartButton";
 
 const { titles, text, buttons } = config;
 const background: string =
     require("../../../../assets/backgrounds/startPageBackground.svg").default;
 
 export const Main = () => {
-    const myBooks = useSelector((state: any) => state.myBooks);
-    const books = {
-        boughtBooks: myBooks.boughtBooks,
-        waitingBooks: myBooks.waitingBooks,
-    };
+    const {isOpen, handleEnter} = useStartButton();
+
     return (
         <MainContainer>
             <ContentContainer>
                 <Content>
                     <h2>{titles.startPage.main}</h2>
-                    <p>{text.startPage.main}</p>
-                    <NavLink to="/fox-library/your-order" state={books}>
-                        {buttons.startPage.main}
-                    </NavLink>
+                    <p className="content-text">{text.startPage.main}</p>
+                    <EnterBtn onClick={handleEnter}>{buttons.startPage.main}</EnterBtn>
+                    <WarningPopUp state={isOpen}/>
                 </Content>
             </ContentContainer>
         </MainContainer>
@@ -59,6 +55,7 @@ const ContentContainer = styled.div`
 `;
 
 const Content = styled.div`
+  position: relative;
     display: flex;
     flex-direction: column;
     max-width: 310px;
@@ -83,7 +80,7 @@ const Content = styled.div`
         }
     }
 
-    p {
+    & .content-text {
         margin: 0 0 40px 0;
         font-weight: ${fontWeight.semiBold};
         font-size: ${fontSize.xxl};
@@ -92,26 +89,6 @@ const Content = styled.div`
     }
 `;
 
-const NavLink = styled(Link)`
-    display: flex;
-    justify-content: center;
-    padding: 10px 3px;
+const EnterBtn = styled(RedButton)`
     width: 185px;
-    font-weight: ${fontWeight.semiBold};
-    font-size: ${fontSize.lg};
-    line-height: 135%;
-    color: ${color.white};
-    border-radius: ${borderRadius.sm};
-    background: ${color.generalRed};
-    transition: background 0.3s ease;
-
-    &:hover {
-        background: #ff3b29;
-    }
-
-    &:active {
-        padding: 7px 0;
-        border: 3px inset #ff220f;
-        box-sizing: border-box;
-    }
 `;

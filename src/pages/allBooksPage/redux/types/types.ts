@@ -39,6 +39,7 @@ export type Data = {
     released: string;
     description: string;
     imageUrl: string;
+    dateBuying?: number;
 };
 
 export type BooksStateType = {

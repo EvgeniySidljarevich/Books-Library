@@ -13,10 +13,11 @@ type Style = {
 };
 
 export const CardContainer = styled.div`
+    position: relative;
     display: flex;
     max-width: 122px;
+    height: 100%;
     flex-direction: column;
-    justify-content: space-between;
     gap: 8px;
 
     h5 {

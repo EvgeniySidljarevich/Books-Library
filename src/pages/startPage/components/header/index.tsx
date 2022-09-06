@@ -52,10 +52,10 @@ export const Header = ({ authClick, regClick }: Props) => {
                 />
             </FormContainer>
             <AuthBlock>
-                <a href="/" onClick={handleClickReg}>
+                <a href="/" onClick={handleClickAuth}>
                     {header.logIn}
                 </a>
-                <a href="/" onClick={handleClickAuth}>
+                <a href="/" onClick={handleClickReg}>
                     {header.signUp}
                 </a>
             </AuthBlock>

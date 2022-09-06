@@ -1,72 +1,78 @@
 import styled from "styled-components";
-import {
-    borderRadius,
-    fontWeight,
-    fontSize,
-    color,
-} from "../../../../styles/variables";
 import { config } from "../../../../locales/en";
+import { Content } from "../authenticationForm";
 import { RedButton } from "../../../../styles/styleComponents";
+import { ChangeEvent } from "react";
+import { color } from "../../../../styles/variables";
+import { useRegistration } from "../../../../hooks/useRegistration";
 
-const { titles, signatures, links } = config;
+const { signatures, titles, links } = config;
 
 export const RegistrationForm = () => {
+    const {
+        email,
+        setEmail,
+        userName,
+        setUserName,
+        password,
+        setPassword,
+        handleRegister,
+    } = useRegistration();
+
     return (
-        <Content>
-            <h2>{titles.startPage.authenticationForm}</h2>
+        <FormContent>
+            <h2>{titles.startPage.registrationForm}</h2>
             <form className="firstForm">
-                <label htmlFor="email">
-                    {signatures.startPage.registrationForm.email}
+                <label htmlFor="username">
+                    {signatures.startPage.registrationForm.username}
                 </label>
-                <input type="text" id="emailReg" />
+                <input
+                    type="text"
+                    id="username"
+                    value={userName}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setUserName(e.target.value)
+                    }
+                />
             </form>
             <form>
-                <label htmlFor="password">
-                    {signatures.startPage.registrationForm.password}
+                <label htmlFor="emailAuth">
+                    {signatures.startPage.registrationForm.email}
+                    <sup>*</sup>
                 </label>
-                <input type="password" id="passwordReg" />
+                <input
+                    type="email"
+                    id="emailAuth"
+                    value={email}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setEmail(e.target.value)
+                    }
+                />
             </form>
-            <Button>{links.startPage.header.logIn}</Button>
-        </Content>
+            <form>
+                <label htmlFor="passwordAuth">
+                    {signatures.startPage.registrationForm.password}
+                    <sup>*</sup>
+                </label>
+                <input
+                    type="password"
+                    id="passwordAuth"
+                    value={password}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        setPassword(e.target.value)
+                    }
+                />
+            </form>
+            <Button onClick={handleRegister}>
+                {links.startPage.header.signUp}
+            </Button>
+        </FormContent>
     );
 };
 
-export const Content = styled.div`
-    h2 {
-        margin: 0;
-        font-weight: ${fontWeight.bold};
-        font-size: ${fontSize.xl};
-        line-height: 137.5%;
-        color: ${color.black};
-    }
-
-    & .firstForm {
-        margin: 53px 0 0;
-    }
-
-    form {
-        position: relative;
-        margin: 42px 0 0;
-    }
-
-    label {
-        position: absolute;
-        top: -26px;
-        font-weight: ${fontWeight.regular};
-        font-size: ${fontSize.sm};
-        line-height: 137.5%;
-        color: ${color.gray};
-    }
-
-    input {
-        padding: 9px 16px;
-        width: 100%;
-        font-weight: ${fontWeight.regular};
-        font-size: ${fontSize.md};
-        line-height: 139%;
-        color: ${color.black};
-        border: 2px solid ${color.secondaryGray};
-        border-radius: ${borderRadius.sm};
+const FormContent = styled(Content)`
+    sup {
+        color: ${color.generalRed};
     }
 `;
 

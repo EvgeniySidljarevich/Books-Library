@@ -7,6 +7,7 @@ import { container } from "../../../styles/styleComponents";
 import {memo, ReactNode} from "react";
 import { Preloader } from "./components/preloader";
 import { useSelector } from "react-redux";
+import {useCheckAuth} from "../../../hooks/useCheckAuth";
 
 type Props = {
     children: ReactNode;
@@ -15,6 +16,8 @@ type Props = {
 
 export const PageWrapper = memo(({ children, inputDisabled }: Props) => {
     const loader = useSelector((state: { [key: string]: any }) => state.books.isLoading);
+    useCheckAuth();
+
     return (
         <GreyWrapper>
             <Header disabled={inputDisabled}/>

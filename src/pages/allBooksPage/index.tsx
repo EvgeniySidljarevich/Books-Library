@@ -5,27 +5,14 @@ import { BookFoolCard } from "./components/bookFoolCard";
 import { useFilterBooks } from "../../hooks/useFilterBooks";
 import { Data } from "./redux/types/types";
 import { useShowMore } from "../../hooks/useShowMore";
-import { useSelector } from "react-redux";
-import { useEffect, useRef } from "react";
+import { useBooksIntoLS } from "../../hooks/useBooksIntoLS";
 
 const { titles, text, buttons } = config;
 
 export const AllBooksPage = () => {
     const { filterData } = useFilterBooks();
     const { slice, showMore } = useShowMore(filterData, 4, 4);
-    const isMounting = useRef(false);
-
-    const boughtBooks = useSelector(
-        (state: { [key: string]: any }) => state.myBooks.waitingBooks,
-    );
-
-    useEffect(() => {
-        if (isMounting.current) {
-            const json = JSON.stringify(boughtBooks);
-            localStorage.setItem("boughtBooks", json);
-        }
-        isMounting.current = true;
-    }, [boughtBooks]);
+    useBooksIntoLS();
 
     return (
         <PageWrapper inputDisabled={false}>
